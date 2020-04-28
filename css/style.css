@@ -1,0 +1,40 @@
+
+#game {
+    height: 100vh;
+    width: 100%;
+    background-color: black;
+    position: relative;
+    display: block;
+}
+
+#game-carousel {
+    border: 5px solid white;
+    min-height: 300px;
+    height: 75vh;
+    width: 90%;
+    position: relative;
+    display: block;
+    margin: 0 auto;
+    background-color: grey;
+
+}
+
+#game-carousel .carousel-item .game-page{
+    height: 60vh;
+    background-color: blanchedalmond;
+    position: relative;
+    display: block;
+}
+
+
+.verify-answer {
+    position: absolute;
+    bottom: 5%;
+}
+
+.verify-answer button {
+    display: block;
+    position: relative;
+    margin: 0 auto;
+    
+}
