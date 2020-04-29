@@ -25,33 +25,65 @@
 
         <div id="game">
 
+
+            <div id="game-carousel" class="carousel slide carousel-fade">
+
+
             <div id="game-status-container">
                 <div class="progress">
                     <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
                   </div>
             </div>
 
-            <div id="game-carousel" class="carousel slide carousel-fade">
                 <div id="question-container" class="carousel-inner">
                     <div class="carousel-item active">
-                        <img class="d-block w-100" src=".../800x400?auto=yes&bg=777&fg=555&text=First slide"
-                            alt="First slide">
-
                         <div class="game-page container">
 
-                            <div class="container">
+                            <div class="container game-question">
                                 <h1>Sample Question - how many questions can I ask?</h1>
                             </div>
 
 
-                            <div class="container multiple-choice">
-                                <input type="radio" id="male" name="gender" value="male">
-                                <label for="male">Male</label><br>
-                                <input type="radio" id="female" name="gender" value="female">
-                                <label for="female">Female</label><br>
-                                <input type="radio" id="other" name="gender" value="other">
-                                <label for="other">Other</label>
+                            <div class="container game-answer">
+
+                                <div class="game-multiple-choice">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="question-0-gameAnswers" id="question-0-opt0" value="Answer1">
+                                        <label class="form-check-label" for="inlineRadio1">
+                                            <span>Answer1</span></label>
+                                      </div>
+                                      <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="question-0-gameAnswers"" id="question-0-opt1" value="Answer2">
+                                        <label class="form-check-label" for="inlineRadio2"><span>Answer2</span></label>
+                                      </div>
+                                      <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="question-0-gameAnswers"" id="question-0-opt2" value="Answer3">
+                                        <label class="form-check-label" for="inlineRadio3"><span>Answer3</span></label>
+                                      </div>
+                                </div>
+
+                                <div class="game-enter-input-single-limit">
+                                    <input class="form-control form-control-lg" minlength=0 maxlength=4 type="text" placeholder="">
+                                </div>
+
+                                <div class="game-enter-input-multiple">
+
+                                    <div class="row">
+                                        <div class="col">
+                                          <input type="text" class="form-control" placeholder="First name">
+                                        </div>
+                                        <div class="col">
+                                          <input type="text" class="form-control" placeholder="Last name">
+                                        </div>
+                                        <div class="col">
+                                            <input type="text" class="form-control" placeholder="Some name">
+                                          </div>
+                                      </div>
+                                </div>
+
                             </div>
+
+
 
                             <div class="container verify-answer">
                                 <button id="answer-0" type="button" class="btn btn-primary btn-lg">Check Answer</button>

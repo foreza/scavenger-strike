@@ -32,3 +32,10 @@ $("#answer-0").click(() => {
     // do some "sexy" animation then
     carouselNavigateToNext();
 })
+
+
+// Sample
+function validateAnswer() {
+    $("input[name='question-0-gameAnswers']").val();
+    return true;
+}

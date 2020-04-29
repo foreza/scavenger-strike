@@ -20,6 +20,8 @@
 }
 
 #game-carousel .carousel-item .game-page{
+    margin: 2.5% auto;
+    padding: 5%;
     height: 60vh;
     background-color: blanchedalmond;
     position: relative;
@@ -27,7 +29,26 @@
 }
 
 
-.verify-answer {
+
+div.game-question{
+    border: 1px black solid;
+    position: relative;
+    display: block;
+    margin: 0 auto;
+}
+
+
+div.game-answer{
+    border: 1px black solid;
+    
+}
+
+div.game-multiple-choice {
+
+}
+
+
+div.verify-answer {
     position: absolute;
     bottom: 5%;
 }
@@ -35,6 +56,5 @@
 .verify-answer button {
     display: block;
     position: relative;
-    margin: 0 auto;
-    
+    margin: 0 auto;    
 }
