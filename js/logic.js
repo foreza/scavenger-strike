@@ -73,6 +73,7 @@ function generateQuestionsFromSet(questionSet) {
         switch (questionSet[i].type) {
             case 0:
                 questionContainer.append(generateTextInputQuestionDOM(questionSet[i], i))
+                $(`#answer-${i}`).click( {answer: questionSet[i].answer, ordinal: i}, validateTextInputAnswer)
                 break;
             case 1:
                 questionContainer.append(generateMultipleChoiceQuestionDOM(questionSet[i], i))
@@ -105,7 +106,7 @@ function generateTextInputQuestionDOM(data, ordinal) {
 
                     <div class="container game-answer">
                         <div class="game-enter-input-single-limit">
-                            <input class="form-control form-control-lg" minlength=0 maxlength=${data.maxCharactersAllowed} type="text" placeholder="Good luck!">
+                            <input id="input-${ordinal}" class="form-control form-control-lg" minlength=0 maxlength=${data.maxCharactersAllowed} type="text" placeholder="Good luck!">
                         </div>
                     </div>
 
@@ -117,6 +118,25 @@ function generateTextInputQuestionDOM(data, ordinal) {
 
             </div>
         `
+}
+
+function validateTextInputAnswer(event) {
+
+
+    // https://stackoverflow.com/questions/3273350/jquerys-click-pass-parameters-to-user-function
+
+    var val = $(`#input-${event.data.ordinal}`).val();
+
+    console.log(`validateTextInputAnswer for ${event.data.answer} for question ${event.data.ordinal} is ${val}`);
+
+    if (event.data.answer == val) {
+        alert("success, next");
+        carouselNavigateToNext();;
+    } else {
+        alert("fail, back to beginning");
+        carouselNavigateStart();
+    }
+
 }
 
 
