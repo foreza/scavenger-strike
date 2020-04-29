@@ -26,6 +26,21 @@
     background-color: blanchedalmond;
     position: relative;
     display: block;
+    background-image: url(https://i.imgur.com/XsfyAku.jpg);
+    background-position-y: bottom;
+    background-size: cover;
+}
+
+#game-carousel .carousel-item .start-page{
+    margin: 2.5% auto;
+    padding: 5%;
+    height: 60vh;
+    background-color: blanchedalmond;
+    position: relative;
+    display: block;
+    /* background-image: url(../asset/bg-1.png); */
+    background-position-y: bottom;
+    background-size: cover;
 }
 
 
