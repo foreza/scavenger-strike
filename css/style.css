@@ -37,6 +37,11 @@
     background-size: cover;
 }
 
+#game-carousel .carousel-item .win-page{
+  background-image: url(https://i.imgur.com/iD99GOK.png);
+  background-position-y: bottom;
+  background-size: cover;
+}
 
 div.game-question{
     position: relative;
@@ -172,4 +177,11 @@ div.verify-answer {
   #game input[type="number"] {
     font-size: 4rem;
     height: 6rem;
+  }
+
+
+  .prize-link {
+    text-align: center;
+    display: block;
+    font-size: 2rem;
   }

@@ -5,46 +5,54 @@ let gameStartIndex = 0;
 let gameCurrentIndex = 0;
 
 
-let sampleSet = [
-    {
-        "type" : 3,
-        "questionPrompt" : "What is bacon?",
-        "answer" : [
-            "What",
-            "is",
-            "bacon"
-        ] 
-    }, 
-    {
-        "type": 1,
-        "questionPrompt": "What is bacon?",
-        "possibleOptions": [
-            "oil",
-            "fat",
-            "lard",
-            "kfc"
-        ],
-        "answer": "oil"
-    },
-    {
-        "type" : 2,
-        "questionPrompt" : "What temperature makes bacon crispy?",
-        "answer" : 100
-    },
+// let sampleSet = [
+//     {
+//         "type" : 3,
+//         "questionPrompt" : "What is bacon?",
+//         "answer" : [
+//             "What",
+//             "is",
+//             "bacon"
+//         ] 
+//     }, 
+//     {
+//         "type": 1,
+//         "questionPrompt": "What is bacon?",
+//         "possibleOptions": [
+//             "oil",
+//             "fat",
+//             "lard",
+//             "kfc"
+//         ],
+//         "answer": "oil"
+//     },
+//     {
+//         "type" : 2,
+//         "questionPrompt" : "What temperature makes bacon crispy?",
+//         "answer" : 100
+//     },
    
-    {
-        "type": 0,
-        "questionPrompt": "What makes bacon crispy?",
-        "maxCharactersAllowed": 40,
-        "answer": "fat"
-    },
+//     {
+//         "type": 0,
+//         "questionPrompt": "What makes bacon crispy?",
+//         "maxCharactersAllowed": 40,
+//         "answer": "fat"
+//     },
 
+// ]
+
+let sampleSet = [
 ]
+
+let prizeData = {
+    "wurl" : "https://www.youtube.com/watch?v=oHg5SJYRHA0"
+};
 
 $(() => {
 
 
     generateQuestionsFromSet(sampleSet);
+    generatePrizeDOM(prizeData);
 
     // Carousel must not automatically move. We don't want that.
     gameCarouselRef = $('#game-carousel').carousel({
@@ -52,9 +60,7 @@ $(() => {
         keyboard: false
     })
 
-
-
-
+    $("#start-game").click(() => carouselNavigateToNext());
 
 })
 
@@ -106,12 +112,44 @@ function generateQuestionsFromSet(questionSet) {
 
     }
 
-    $(".carousel-item button").click(() => {
-        // if answer is correct
-        // do some "sexy" animation then
-        carouselNavigateToNext();
-    })
+}
 
+
+function generatePrizeDOM(data) {
+
+    const prizeDisplay = `
+        <div id="game-win" class="carousel-item">
+            <div class="page win-page container">
+                <div class="container game-question">
+                    <h1>You made it all the way to the end! Incredible!</h1>
+                </div>
+                <div class="container verify-answer">
+                    <button id="finish-game" type="button"  data-toggle="modal" data-target="#game-win-modal" class="btn btn-primary btn-lg">See my prize!</button>
+                </div>
+            </div>
+        </div>
+        
+
+        <div class="modal fade" id="game-win-modal" tabindex="-1" role="dialog" aria-labelledby="game-win" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title" id="game-win">Congrats!!</h1>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <h5>Here's a special prize just for you. Thanks for playing!</h5>
+              <a class="prize-link" target="_blank" href="${data.wurl}">Click here</a>
+            </div>
+          </div>
+        </div>
+      </div>
+        
+        `
+
+    $('#question-container').append(prizeDisplay)
 }
 
 
