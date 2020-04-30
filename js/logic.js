@@ -5,47 +5,42 @@ let gameStartIndex = 0;
 let gameCurrentIndex = 0;
 
 
-// let sampleSet = [
-//     {
-//         "type" : 3,
-//         "questionPrompt" : "What is bacon?",
-//         "answer" : [
-//             "What",
-//             "is",
-//             "bacon"
-//         ] 
-//     }, 
-//     {
-//         "type": 1,
-//         "questionPrompt": "What is bacon?",
-//         "possibleOptions": [
-//             "oil",
-//             "fat",
-//             "lard",
-//             "kfc"
-//         ],
-//         "answer": "oil"
-//     },
-//     {
-//         "type" : 2,
-//         "questionPrompt" : "What temperature makes bacon crispy?",
-//         "answer" : 100
-//     },
-   
-//     {
-//         "type": 0,
-//         "questionPrompt": "What makes bacon crispy?",
-//         "maxCharactersAllowed": 40,
-//         "answer": "fat"
-//     },
-
-// ]
-
 let sampleSet = [
+    {
+        "type": 3,
+        "questionPrompt": "What is bacon?",
+        "answer": [
+            "What",
+            "is",
+            "bacon"
+        ]
+    },
+    {
+        "type": 1,
+        "questionPrompt": "What is bacon?",
+        "possibleOptions": [
+            "oil",
+            "fat",
+            "lard",
+            "kfc"
+        ],
+        "answer": "oil"
+    },
+    {
+        "type": 2,
+        "questionPrompt": "What temperature makes bacon crispy?",
+        "answer": 100
+    },
+    {
+        "type": 0,
+        "questionPrompt": "What makes bacon crispy?",
+        "maxCharactersAllowed": 40,
+        "answer": "fat"
+    }
 ]
 
 let prizeData = {
-    "wurl" : "https://www.youtube.com/watch?v=oHg5SJYRHA0"
+    "wurl": "https://www.youtube.com/watch?v=oHg5SJYRHA0"
 };
 
 $(() => {
@@ -236,8 +231,8 @@ function generateMultipleWordInputQuestionDOM(data, ordinal) {
     let optionString = "";
 
     for (var i = 0; i < data.answer.length; ++i) {
-        optionString += 
-        `<div class="col-sm-12 col-md-4">
+        optionString +=
+            `<div class="col-sm-12 col-md-4">
             <input id="input-${ordinal}-pos-${i}" type="text" class="form-control" placeholder="?">
         </div>`
     }
@@ -260,7 +255,7 @@ function generateMultipleWordInputQuestionDOM(data, ordinal) {
                 </div>
             </div>`
 }
- 
+
 
 function validateTextInputAnswer(event) {
     // https://stackoverflow.com/questions/3273350/jquerys-click-pass-parameters-to-user-function
@@ -307,9 +302,9 @@ function validateNumericInputAnswer(event) {
 
 function validateMultipleWordAnswer(event) {
     let valArr = [];
-    $(`[id^=input-${event.data.ordinal}-pos]`).map((index, value) => { valArr.push(value.value.toLowerCase())})
+    $(`[id^=input-${event.data.ordinal}-pos]`).map((index, value) => { valArr.push(value.value.toLowerCase()) })
     let answerArr = [];
-    event.data.answer.map((index, value) => { answerArr.push(index.toLowerCase())});
+    event.data.answer.map((index, value) => { answerArr.push(index.toLowerCase()) });
     console.log(`validateMultipleWordAnswer for ${answerArr} for question ${event.data.ordinal} is ${valArr}`);
 
     if (util_arraysEqual(valArr, answerArr)) {
@@ -326,19 +321,19 @@ function validateMultipleWordAnswer(event) {
 function util_arraysEqual(a, b) {
 
     https://stackoverflow.com/questions/3115982/how-to-check-if-two-arrays-are-equal-with-javascript
-    
+
     if (a === b) return true;
     if (a == null || b == null) return false;
     if (a.length != b.length) return false;
-  
+
     a.sort();
     b.sort();
-  
+
     for (var i = 0; i < a.length; ++i) {
-      if (a[i] !== b[i]) return false;
+        if (a[i] !== b[i]) return false;
     }
     return true;
-  }
+}
 
 
 
