@@ -1,31 +1,45 @@
 
 
 let gameCarouselRef;
-let gameStartIndex = 0;                                 
+let gameStartIndex = 0;
 let gameCurrentIndex = 0;
 
 
 let sampleSet = [
     {
-        "type" : 0,
-        "questionPrompt" : "What makes bacon crispy?",
-        "maxCharactersAllowed" : 40,
-        "answer" : "fat"
+        "type" : 2,
+        "questionPrompt" : "What temperature makes bacon crispy?",
+        "answer" : 100
     },
     {
-        "type" : 1,
+        "type" : 3,
         "questionPrompt" : "What is bacon?",
-        "possibleOptions" : [
+        "answer" : [
+            "What",
+            "is",
+            "bacon"
+        ] 
+    },    
+    {
+        "type": 0,
+        "questionPrompt": "What makes bacon crispy?",
+        "maxCharactersAllowed": 40,
+        "answer": "fat"
+    },
+    {
+        "type": 1,
+        "questionPrompt": "What is bacon?",
+        "possibleOptions": [
             "oil",
             "fat",
             "lard",
             "kfc"
         ],
-        "answer" : 1
+        "answer": 1
     }
 ]
 
-$( () => {
+$(() => {
 
 
     generateQuestionsFromSet(sampleSet);
@@ -34,10 +48,10 @@ $( () => {
     gameCarouselRef = $('#game-carousel').carousel({
         interval: 0,
         keyboard: false
-      })
+    })
 
-  
-    
+
+
 
 
 })
@@ -47,13 +61,9 @@ function carouselNavigateStart() {
     gameCarouselRef.carousel(0);
 }
 
-function carouselNavigateToNext(){
+function carouselNavigateToNext() {
     gameCarouselRef.carousel('next');
 }
-
-
-
-
 
 
 // Sample
@@ -68,22 +78,27 @@ function generateQuestionsFromSet(questionSet) {
 
     let questionContainer = $('#question-container');
 
-    for (var i = 0; i < questionSet.length; ++i){
+    for (var i = 0; i < questionSet.length; ++i) {
 
         switch (questionSet[i].type) {
             case 0:
                 questionContainer.append(generateTextInputQuestionDOM(questionSet[i], i))
-                $(`#answer-${i}`).click( {answer: questionSet[i].answer, ordinal: i}, validateTextInputAnswer)
+                $(`#answer-${i}`).click({ answer: questionSet[i].answer, ordinal: i }, validateTextInputAnswer)
                 break;
             case 1:
                 questionContainer.append(generateMultipleChoiceQuestionDOM(questionSet[i], i))
                 break;
+            case 2:
+                questionContainer.append(generateNumericInputQuestionDOM(questionSet[i], i))
+                break;
+            case 3:
+                questionContainer.append(generateMultipleWordInputQuestionDOM(questionSet[i], i))
             default:
                 break;
         }
-            
 
-       
+
+
     }
 
     $(".carousel-item button").click(() => {
@@ -99,46 +114,20 @@ function generateTextInputQuestionDOM(data, ordinal) {
 
     return `<div id="question-${ordinal}" class="carousel-item">
                 <div class="game-page container">
-                    
                     <div class="container game-question">
                         <h1>${data.questionPrompt}</h1>
                     </div>
-
                     <div class="container game-answer">
                         <div class="game-enter-input-single-limit">
                             <input id="input-${ordinal}" class="form-control form-control-lg" minlength=0 maxlength=${data.maxCharactersAllowed} type="text" placeholder="Good luck!">
                         </div>
                     </div>
-
                     <div class="container verify-answer">
                         <button id="answer-${ordinal}" type="button" class="btn btn-primary btn-lg">Check Answer</button>
                     </div>
-
                 </div>
-
-            </div>
-        `
+            </div>`
 }
-
-function validateTextInputAnswer(event) {
-
-
-    // https://stackoverflow.com/questions/3273350/jquerys-click-pass-parameters-to-user-function
-
-    var val = $(`#input-${event.data.ordinal}`).val();
-
-    console.log(`validateTextInputAnswer for ${event.data.answer} for question ${event.data.ordinal} is ${val}`);
-
-    if (event.data.answer == val) {
-        alert("success, next");
-        carouselNavigateToNext();;
-    } else {
-        alert("fail, back to beginning");
-        carouselNavigateStart();
-    }
-
-}
-
 
 function generateMultipleChoiceQuestionDOM(data, ordinal) {
 
@@ -152,7 +141,6 @@ function generateMultipleChoiceQuestionDOM(data, ordinal) {
         <span class="radio-answer">${data.possibleOptions[i]}</span>
       </label>`
     }
-
 
     return `<div id="question-${ordinal}" class="carousel-item">
                 <div class="game-page container">
@@ -178,3 +166,83 @@ function generateMultipleChoiceQuestionDOM(data, ordinal) {
             </div>
         `
 }
+
+function generateNumericInputQuestionDOM(data, ordinal) {
+
+    return `<div id="question-${ordinal}" class="carousel-item">
+                <div class="game-page container">
+                    <div class="container game-question">
+                        <h1>${data.questionPrompt}</h1>
+                    </div>
+                    <div class="container game-answer">
+                        <div class="game-enter-input-number">
+                            <input id="input-${ordinal}" class="form-control form-control-lg" type="number" placeholder="">
+                        </div>
+                    </div>
+                    <div class="container verify-answer">
+                        <button id="answer-${ordinal}" type="button" class="btn btn-primary btn-lg">Check Answer</button>
+                    </div>
+                </div>
+            </div>`
+}
+
+
+function generateMultipleWordInputQuestionDOM(data, ordinal) {
+
+    let optionString = "";
+
+    for (var i = 0; i < data.answer.length; ++i) {
+        optionString += 
+        `<div class="col-sm-12 col-md-4">
+            <input id="input-${ordinal}-pos-${i}" type="text" class="form-control" placeholder="?">
+        </div>`
+    }
+
+    return `<div id="question-${ordinal}" class="carousel-item">
+                <div class="game-page container">
+                    <div class="container game-question">
+                        <h1>${data.questionPrompt}</h1>
+                    </div>
+                    <div class="container game-answer">
+                        <div class="game-enter-input-multiple">
+                            <div class="row">
+                                ${optionString}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container verify-answer">
+                        <button id="answer-${ordinal}" type="button" class="btn btn-primary btn-lg">Check Answer</button>
+                    </div>
+                </div>
+            </div>`
+}
+ 
+
+function validateTextInputAnswer(event) {
+    // https://stackoverflow.com/questions/3273350/jquerys-click-pass-parameters-to-user-function
+
+    var val = $(`#input-${event.data.ordinal}`).val();
+    console.log(`validateTextInputAnswer for ${event.data.answer} for question ${event.data.ordinal} is ${val}`);
+
+    if (event.data.answer == val) {
+        alert("success, next");
+        carouselNavigateToNext();;
+    } else {
+        alert("fail, back to beginning");
+        carouselNavigateStart();
+    }
+
+}
+
+
+function validateMultipleChoiceAnswer(event) {
+    // TODO
+}
+
+function validateNumericInputAnswer(event) {
+    // TODO   
+}
+
+
+
+

@@ -14,10 +14,10 @@ Currently hosted for free (with thanks) on netlify.
 
 
 Types of Question/Answers supported:
-0: Single Text Input (with optional character count limit) - Answer should be a string. 
-1: Multiple Choice - Answer should be an integer number (for the correct index) 
-2: Single Numeric Input - Answer should be a number.
-3: Multiple Word Input - Answer should be an array of strings.
+- 0: Single Text Input (with optional character count limit) - Answer should be a string. 
+- 1: Multiple Choice - Answer should be an integer number (for the correct index) 
+- 2: Single Numeric Input - Answer should be a number.
+- 3: Multiple Word Input - Answer should be an array of strings.
 
 Sample Question Structure:
 ```
@@ -57,7 +57,7 @@ Numeric Input Question:
 Multiple Word Question:
 
 {
-    "type" : 1,
+    "type" : 3,
     "questionPrompt" : "What is bacon?",
     "answer" : [
         "What",
