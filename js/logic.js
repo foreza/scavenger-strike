@@ -7,11 +7,6 @@ let gameCurrentIndex = 0;
 
 let sampleSet = [
     {
-        "type" : 2,
-        "questionPrompt" : "What temperature makes bacon crispy?",
-        "answer" : 100
-    },
-    {
         "type" : 3,
         "questionPrompt" : "What is bacon?",
         "answer" : [
@@ -19,13 +14,7 @@ let sampleSet = [
             "is",
             "bacon"
         ] 
-    },    
-    {
-        "type": 0,
-        "questionPrompt": "What makes bacon crispy?",
-        "maxCharactersAllowed": 40,
-        "answer": "fat"
-    },
+    }, 
     {
         "type": 1,
         "questionPrompt": "What is bacon?",
@@ -35,8 +24,21 @@ let sampleSet = [
             "lard",
             "kfc"
         ],
-        "answer": 1
-    }
+        "answer": "oil"
+    },
+    {
+        "type" : 2,
+        "questionPrompt" : "What temperature makes bacon crispy?",
+        "answer" : 100
+    },
+   
+    {
+        "type": 0,
+        "questionPrompt": "What makes bacon crispy?",
+        "maxCharactersAllowed": 40,
+        "answer": "fat"
+    },
+
 ]
 
 $(() => {
@@ -87,12 +89,15 @@ function generateQuestionsFromSet(questionSet) {
                 break;
             case 1:
                 questionContainer.append(generateMultipleChoiceQuestionDOM(questionSet[i], i))
+                $(`#answer-${i}`).click({ answer: questionSet[i].answer, ordinal: i }, validateMultipleChoiceAnswer)
                 break;
             case 2:
                 questionContainer.append(generateNumericInputQuestionDOM(questionSet[i], i))
+                $(`#answer-${i}`).click({ answer: questionSet[i].answer, ordinal: i }, validateNumericInputAnswer)
                 break;
             case 3:
                 questionContainer.append(generateMultipleWordInputQuestionDOM(questionSet[i], i))
+                $(`#answer-${i}`).click({ answer: questionSet[i].answer, ordinal: i }, validateMultipleWordAnswer)
             default:
                 break;
         }
@@ -136,7 +141,8 @@ function generateMultipleChoiceQuestionDOM(data, ordinal) {
 
     for (var i = 0; i < data.possibleOptions.length; ++i) {
         choiceString += `<label class="form-check-label enhanced-radio-select">
-        <input class="form-check-input" type="radio" name="question-${ordinal}-gameAnswers" id="question-${ordinal}-opt${i}" value="${data.possibleOptions[i]}">
+        <input class="form-check-input" type="radio" name="question-${ordinal}-gameAnswers" 
+        id="question-${ordinal}-opt${i}" value="${data.possibleOptions[i]}">
         <span class="enhanced-radio-button"></span>
         <span class="radio-answer">${data.possibleOptions[i]}</span>
       </label>`
@@ -221,10 +227,11 @@ function generateMultipleWordInputQuestionDOM(data, ordinal) {
 function validateTextInputAnswer(event) {
     // https://stackoverflow.com/questions/3273350/jquerys-click-pass-parameters-to-user-function
 
-    var val = $(`#input-${event.data.ordinal}`).val();
-    console.log(`validateTextInputAnswer for ${event.data.answer} for question ${event.data.ordinal} is ${val}`);
+    const val = $(`#input-${event.data.ordinal}`).val().toLowerCase();
+    const answer = event.data.answer.toLowerCase();
+    console.log(`validateTextInputAnswer for ${answer} for question ${event.data.ordinal} is ${val}`);
 
-    if (event.data.answer == val) {
+    if (answer === val) {
         alert("success, next");
         carouselNavigateToNext();;
     } else {
@@ -236,12 +243,68 @@ function validateTextInputAnswer(event) {
 
 
 function validateMultipleChoiceAnswer(event) {
-    // TODO
+    const val = $(`input[name='question-${event.data.ordinal}-gameAnswers']:checked`).val();
+    console.log(`validateMultipleChoiceAnswer for ${event.data.answer} for question ${event.data.ordinal} is ${val}`);
+
+    if (event.data.answer === val) {
+        alert("success, next");
+        carouselNavigateToNext();;
+    } else {
+        alert("fail, back to beginning");
+        carouselNavigateStart();
+    }
+
 }
 
 function validateNumericInputAnswer(event) {
-    // TODO   
+    const val = parseInt($(`#input-${event.data.ordinal}`).val());
+    console.log(`validateNumericInputAnswer for ${event.data.answer} for question ${event.data.ordinal} is ${val}`);
+
+    if (event.data.answer === val) {
+        alert("success, next");
+        carouselNavigateToNext();;
+    } else {
+        alert("fail, back to beginning");
+        carouselNavigateStart();
+    }
 }
+
+
+function validateMultipleWordAnswer(event) {
+    let valArr = [];
+    $(`[id^=input-${event.data.ordinal}-pos]`).map((index, value) => { valArr.push(value.value.toLowerCase())})
+    let answerArr = [];
+    event.data.answer.map((index, value) => { answerArr.push(index.toLowerCase())});
+    console.log(`validateMultipleWordAnswer for ${answerArr} for question ${event.data.ordinal} is ${valArr}`);
+
+    if (util_arraysEqual(valArr, answerArr)) {
+        alert("success, next");
+        carouselNavigateToNext();;
+    } else {
+        alert("fail, back to beginning");
+        carouselNavigateStart();
+    }
+
+}
+
+
+
+function util_arraysEqual(a, b) {
+
+    https://stackoverflow.com/questions/3115982/how-to-check-if-two-arrays-are-equal-with-javascript
+    
+    if (a === b) return true;
+    if (a == null || b == null) return false;
+    if (a.length != b.length) return false;
+  
+    a.sort();
+    b.sort();
+  
+    for (var i = 0; i < a.length; ++i) {
+      if (a[i] !== b[i]) return false;
+    }
+    return true;
+  }
 
 
 

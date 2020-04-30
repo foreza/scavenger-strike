@@ -42,7 +42,7 @@ Multiple Choice Question:
         "lard",
         "kfc"
     ],
-    "answer" : 1
+    "answer" : "oil"
 }
 
 
