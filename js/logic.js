@@ -118,7 +118,7 @@ function generateQuestionsFromSet(questionSet) {
 function generateTextInputQuestionDOM(data, ordinal) {
 
     return `<div id="question-${ordinal}" class="carousel-item">
-                <div class="game-page container">
+                <div class="page game-page container">
                     <div class="container game-question">
                         <h1>${data.questionPrompt}</h1>
                     </div>
@@ -149,7 +149,7 @@ function generateMultipleChoiceQuestionDOM(data, ordinal) {
     }
 
     return `<div id="question-${ordinal}" class="carousel-item">
-                <div class="game-page container">
+                <div class="page game-page container">
                     
                     <div class="container game-question">
                         <h1>${data.questionPrompt}</h1>
@@ -176,7 +176,7 @@ function generateMultipleChoiceQuestionDOM(data, ordinal) {
 function generateNumericInputQuestionDOM(data, ordinal) {
 
     return `<div id="question-${ordinal}" class="carousel-item">
-                <div class="game-page container">
+                <div class="page game-page container">
                     <div class="container game-question">
                         <h1>${data.questionPrompt}</h1>
                     </div>
@@ -205,7 +205,7 @@ function generateMultipleWordInputQuestionDOM(data, ordinal) {
     }
 
     return `<div id="question-${ordinal}" class="carousel-item">
-                <div class="game-page container">
+                <div class="page game-page container">
                     <div class="container game-question">
                         <h1>${data.questionPrompt}</h1>
                     </div>
