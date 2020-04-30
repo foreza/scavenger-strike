@@ -29,174 +29,55 @@
             <div id="game-carousel" class="carousel slide carousel-fade">
 
 
-            <div id="game-status-container">
-                <div class="progress">
-                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
-                  </div>
-            </div>
+                <div id="game-status-container">
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
+                            aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
+                    </div>
+                </div>
 
                 <div id="question-container" class="carousel-inner">
 
                     <div id="game-start" class="carousel-item active">
                         <div class="start-page container">
-
                             <div class="container game-question">
                                 <h1>Let's have some fun!</h1>
                             </div>
-
                             <div class="container verify-answer">
-                                <button id="start-game" type="button" class="btn btn-primary btn-lg">Check Answer</button>
+                                <button id="start-game" type="button" class="btn btn-primary btn-lg">Check
+                                    Answer</button>
                             </div>
-                            
-
                         </div>
 
                     </div>
 
                     <!-- Dynamically generated -->
 
-                    <!-- <div id="question-0" class="carousel-item active">
-                        <div class="game-page container">
 
-                            <div class="container game-question">
-                                <h1>Sample Question - how many questions can I ask?</h1>
-                            </div>
-
-
-                            <div class="container game-answer">
-                                <div class="game-enter-input-single-limit">
-                                    <input class="form-control form-control-lg" minlength=0 maxlength=4 type="text" placeholder="">
-                                </div>
-                            </div>
-
-
-
-                            <div class="container verify-answer">
-                                <button id="answer-0" type="button" class="btn btn-primary btn-lg">Check Answer</button>
-                            </div>
-                            
-
-                        </div>
-
-                    </div>
-                    <div id="question-1" class="carousel-item">
-                        <div class="game-page container">
-
-                            <div class="container game-question">
-                                <h1>Sample Question - how many questions can I ask?</h1>
-                            </div>
-
-
-                            <div class="enhanced-radio-select game-answer">
-
-                                <div class="game-multiple-choice">
-
-                                    <label class="form-check-label enhanced-radio-select">
-                                        <input class="form-check-input" type="radio" name="question-0-gameAnswers" id="question-0-opt0" value="Answer1">
-                                        <span class="enhanced-radio-button"></span>
-                                        <span class="radio-answer">Answer1</span>
-                                      </label>
-                                      <label class="form-check-label enhanced-radio-select">
-                                        <input class="form-check-input" type="radio" name="question-0-gameAnswers" id="question-0-opt1" value="Answer2">
-                                        <span class="enhanced-radio-button"></span>
-                                        <span class="radio-answer">Answer2</span>
-                                      </label>
-                                      <label class="form-check-label enhanced-radio-select">
-                                        <input class="form-check-input" type="radio" name="question-0-gameAnswers" id="question-0-opt2" value="Answer3">
-                                        <span class="enhanced-radio-button"></span>
-                                        <span class="radio-answer">Answer3</span>
-                                      </label>
-                                      <label class="form-check-label enhanced-radio-select">
-                                        <input class="form-check-input" type="radio" name="question-0-gameAnswers" id="question-0-opt3" value="Answer4">
-                                        <span class="enhanced-radio-button"></span>
-                                        <span class="radio-answer">Answer4</span>
-                                      </label>
-
-
-                                </div>
-
-                            </div>
-
-
-
-                            <div class="container verify-answer">
-                                <button id="answer-0" type="button" class="btn btn-primary btn-lg">Check Answer</button>
-                            </div>
-                            
-
-                        </div>
-
-                    </div>
-                    <div id="question-2" class="carousel-item">
-                        <div class="game-page container">
-
-                            <div class="container game-question">
-                                <h1>Sample Question - how many questions can I ask?</h1>
-                            </div>
-
-
-                            <div class="container game-answer">
-                               
-                                <div class="game-enter-input-number">
-                                    <input class="form-control form-control-lg" type="number" placeholder="">
-                                </div>
-
-                            </div>
-
-
-
-                            <div class="container verify-answer">
-                                <button id="answer-0" type="button" class="btn btn-primary btn-lg">Check Answer</button>
-                            </div>
-                            
-
-                        </div>
-
-                    </div>
-                    <div id="question-3" class="carousel-item">
-                        <div class="game-page container">
-
-                            <div class="container game-question">
-                                <h1>Sample Question - how many questions can I ask?</h1>
-                            </div>
-
-
-                            <div class="container game-answer">
-
-                            
-
-                                <div class="game-enter-input-multiple">
-
-                                    <div class="row">
-                                        <div class="col-sm-12 col-md-4">
-                                          <input type="text" class="form-control" placeholder="First name">
-                                        </div>
-                                        <div class="col-sm-12 col-md-4">
-                                          <input type="text" class="form-control" placeholder="Last name">
-                                        </div>
-                                        <div class="col-sm-12 col-md-4">
-                                            <input type="text" class="form-control" placeholder="Some name">
-                                          </div>
-                                      </div>
-                                </div>
-
-                            </div>
-
-
-
-                            <div class="container verify-answer">
-                                <button id="answer-0" type="button" class="btn btn-primary btn-lg">Check Answer</button>
-                            </div>
-                            
-
-                        </div>
-
-                    </div> -->
                 </div>
             </div>
 
         </div>
 
+
+        <div class="modal fade" id="wrong-answer-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Uh oh!</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  You have to get EVERY question right. Try again! Next time, it'll be easier...
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Try Again</button>
+                </div>
+              </div>
+            </div>
+          </div>
 
     </main>
 

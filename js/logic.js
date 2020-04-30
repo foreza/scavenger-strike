@@ -232,10 +232,9 @@ function validateTextInputAnswer(event) {
     console.log(`validateTextInputAnswer for ${answer} for question ${event.data.ordinal} is ${val}`);
 
     if (answer === val) {
-        alert("success, next");
         carouselNavigateToNext();;
     } else {
-        alert("fail, back to beginning");
+        $('#wrong-answer-modal').modal('show')
         carouselNavigateStart();
     }
 
@@ -247,10 +246,9 @@ function validateMultipleChoiceAnswer(event) {
     console.log(`validateMultipleChoiceAnswer for ${event.data.answer} for question ${event.data.ordinal} is ${val}`);
 
     if (event.data.answer === val) {
-        alert("success, next");
         carouselNavigateToNext();;
     } else {
-        alert("fail, back to beginning");
+        $('#wrong-answer-modal').modal('show')
         carouselNavigateStart();
     }
 
@@ -261,10 +259,9 @@ function validateNumericInputAnswer(event) {
     console.log(`validateNumericInputAnswer for ${event.data.answer} for question ${event.data.ordinal} is ${val}`);
 
     if (event.data.answer === val) {
-        alert("success, next");
         carouselNavigateToNext();;
     } else {
-        alert("fail, back to beginning");
+        $('#wrong-answer-modal').modal('show')
         carouselNavigateStart();
     }
 }
@@ -278,10 +275,9 @@ function validateMultipleWordAnswer(event) {
     console.log(`validateMultipleWordAnswer for ${answerArr} for question ${event.data.ordinal} is ${valArr}`);
 
     if (util_arraysEqual(valArr, answerArr)) {
-        alert("success, next");
         carouselNavigateToNext();;
     } else {
-        alert("fail, back to beginning");
+        $('#wrong-answer-modal').modal('show')
         carouselNavigateStart();
     }
 
