@@ -18,9 +18,9 @@
 
 
 #game-carousel .carousel-item .page {
-  margin: 1.5% auto;
-  padding: 2%;
-  height: 80vh;
+  margin: 0.5% auto;
+  padding: 1%;
+  height: 90vh;
   position: relative;
   display: block;
 }
@@ -32,14 +32,14 @@
 }
 
 #game-carousel .carousel-item .start-page{
-    background-image: url(https://i.imgur.com/iD99GOK.png);
-    background-position-y: bottom;
+  background-image: url(https://i.imgur.com/XsfyAku.jpg);
+    background-position-y: top;
     background-size: cover;
 }
 
 #game-carousel .carousel-item .win-page{
-  background-image: url(https://i.imgur.com/iD99GOK.png);
-  background-position-y: bottom;
+  background-image: url(https://i.imgur.com/XsfyAku.jpg);
+  background-position-y: middle;
   background-size: cover;
 }
 
@@ -154,12 +154,12 @@ div.verify-answer {
     background: white;
   }
 
-  #game {
+  #game, #wrong-answer-modal {
     font-family: 'Indie Flower', cursive;
   }
 
   #game h1 {
-    font-size: 5rem;
+    font-size: 5vh;
   }
 
 
@@ -183,5 +183,53 @@ div.verify-answer {
   .prize-link {
     text-align: center;
     display: block;
-    font-size: 2rem;
+    font-size: 5vh;
+  }
+
+
+
+  #wrong-answer-modal .modal-dialog {
+    font-size: 4vh;
+    max-width: 80%;
+  }
+
+  #wrong-answer-modal .modal-title {
+    font-size: 10vh;
+    display: block;
+    position: relative;
+    margin: 0 auto;
+  }
+
+  #wrong-answer-modal button {
+    font-size: 5vh;
+    border-radius: 50px;
+    position: relative;
+    display: block;
+    margin: 0 auto;
+  }
+
+
+  #game-win-modal .modal-dialog {
+    font-size: 4vh;
+    max-width: 80%; 
+  }
+
+  #game-win-modal .modal-body h5 {
+    font-size: 3vh;
+  }
+
+  #game-win-modal .modal-title {
+    font-size: 10vh;
+    display: block;
+    position: relative;
+    margin: 0 auto;
+  }
+
+
+  #game-win-modal button {
+    font-size: 5vh;
+    border-radius: 10px;
+    position: relative;
+    display: block;
+    margin: 0 auto;
   }

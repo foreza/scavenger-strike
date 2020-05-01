@@ -7,37 +7,70 @@ let gameCurrentIndex = 0;
 
 let sampleSet = [
     {
-        "type": 3,
-        "questionPrompt": "What is bacon?",
-        "answer": [
-            "What",
-            "is",
-            "bacon"
-        ]
+        "type": 0,
+        "questionPrompt": "What month will the baby be born?",
+        "maxCharactersAllowed": 10,
+        "answer": "August"
     },
     {
         "type": 1,
-        "questionPrompt": "What is bacon?",
+        "questionPrompt": "What is one thing that Erika will NOT buy her son/daughter?",
         "possibleOptions": [
-            "oil",
-            "fat",
-            "lard",
-            "kfc"
+            "Vegetables",
+            "Chores",
+            "Candy",
+            "Math games or books"
         ],
-        "answer": "oil"
+        "answer": "Candy"
+    },
+    {
+        "type": 1,
+        "questionPrompt": "What is the one thing Juan will for sure give or buy his son or daughter?",
+        "possibleOptions": [
+            "Video games",
+            "Ball/glove",
+            "Books",
+            "Money",
+        ],
+        "answer": "Ball/glove"
+    },
+    {
+        "type": 3,
+        "questionPrompt": "If you read the bible once a day for an entire year, you can find these 3 words together (365 times) to comfort you each day.",
+        "answer": [
+            "do",
+            "not",
+            "fear"
+        ]
     },
     {
         "type": 2,
-        "questionPrompt": "What temperature makes bacon crispy?",
-        "answer": 100
+        "questionPrompt": "Baby’s nursery room measures 12 feet by 16 feet. Juan and Erika want to put a new carpet in the nursery room that cost $5 per square foot. How much will it cost for them to carpet the nursery room?",
+        "answer": 960
     },
     {
         "type": 0,
-        "questionPrompt": "What makes bacon crispy?",
-        "maxCharactersAllowed": 40,
-        "answer": "fat"
+        "questionPrompt": "I can bring a smile to your face.  A tear to your eye.  Or even a thought to your mind. But you can’t see me. What am I? (4 letters)",
+        "maxCharactersAllowed": 4,
+        "answer": "baby"
+    },
+    {
+        "type": 0,
+        "questionPrompt": "Almost everyone needs it, asks for it, gives it, but almost nobody takes it.  What is it? (6 letters)",
+        "maxCharactersAllowed": 6,
+        "answer": "advice"
+    },
+    {
+        "type": 0,
+        "questionPrompt": "I am gentle enough to soothe your skin, light enough to fly in the sky, and strong enough to crack rocks.  What am I?  (5 letters)",
+        "maxCharactersAllowed": 5,
+        "answer": "water"
     }
+    
+
 ]
+
+// sampleSet = [];
 
 let prizeData = {
     "wurl": "https://www.youtube.com/watch?v=oHg5SJYRHA0"
@@ -114,7 +147,7 @@ function generatePrizeDOM(data) {
 
     const prizeDisplay = `
         <div id="game-win" class="carousel-item">
-            <div class="page win-page container">
+            <div class="page win-page">
                 <div class="container game-question">
                     <h1>You made it all the way to the end! Incredible!</h1>
                 </div>
@@ -130,8 +163,6 @@ function generatePrizeDOM(data) {
           <div class="modal-content">
             <div class="modal-header">
               <h1 class="modal-title" id="game-win">Congrats!!</h1>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="modal-body">
@@ -151,7 +182,7 @@ function generatePrizeDOM(data) {
 function generateTextInputQuestionDOM(data, ordinal) {
 
     return `<div id="question-${ordinal}" class="carousel-item">
-                <div class="page game-page container">
+                <div class="page game-page">
                     <div class="container game-question">
                         <h1>${data.questionPrompt}</h1>
                     </div>
@@ -182,7 +213,7 @@ function generateMultipleChoiceQuestionDOM(data, ordinal) {
     }
 
     return `<div id="question-${ordinal}" class="carousel-item">
-                <div class="page game-page container">
+                <div class="page game-page">
                     
                     <div class="container game-question">
                         <h1>${data.questionPrompt}</h1>
@@ -209,7 +240,7 @@ function generateMultipleChoiceQuestionDOM(data, ordinal) {
 function generateNumericInputQuestionDOM(data, ordinal) {
 
     return `<div id="question-${ordinal}" class="carousel-item">
-                <div class="page game-page container">
+                <div class="page game-page">
                     <div class="container game-question">
                         <h1>${data.questionPrompt}</h1>
                     </div>
@@ -238,7 +269,7 @@ function generateMultipleWordInputQuestionDOM(data, ordinal) {
     }
 
     return `<div id="question-${ordinal}" class="carousel-item">
-                <div class="page game-page container">
+                <div class="page game-page">
                     <div class="container game-question">
                         <h1>${data.questionPrompt}</h1>
                     </div>
