@@ -1,8 +1,10 @@
 
 
 let gameCarouselRef;
+let gameProgressBarRef;
 let gameStartIndex = 0;
 let gameCurrentIndex = 0;
+
 
 
 let sampleSet = [
@@ -84,6 +86,9 @@ $(() => {
         keyboard: false
     })
 
+    gameProgressBarRef = $('#game-progress-bar');
+    gameProgressBarRef.width('0%');
+
     $("#start-game").click(() => carouselNavigateToNext());
 
 })
@@ -91,10 +96,15 @@ $(() => {
 
 function carouselNavigateStart() {
     gameCarouselRef.carousel(0);
+    gameProgressBarRef.width('0%');
+    gameCurrentIndex = 0;
+    
 }
 
 function carouselNavigateToNext() {
     gameCarouselRef.carousel('next');
+    gameCurrentIndex++;
+    gameProgressBarRef.width(`${100 * (gameCurrentIndex/(sampleSet.length + 1))}%`)
 }
 
 
