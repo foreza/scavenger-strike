@@ -35,13 +35,9 @@ let sampleSet = [
         "answer": "Ball/glove"
     },
     {
-        "type": 3,
-        "questionPrompt": "If you read the bible once a day for an entire year, you can find these 3 words together (365 times) to comfort you each day.",
-        "answer": [
-            "do",
-            "not",
-            "fear"
-        ]
+        "type": 0,
+        "questionPrompt": "If you read the bible once a day for an entire year, you can find this phrase of 4 words together (365 times) to comfort you each day.",
+        "answer": "do not be afraid"
     },
     {
         "type": 2,
